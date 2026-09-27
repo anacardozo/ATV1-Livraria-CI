@@ -19,12 +19,10 @@ export class LivroController {
 
       return res.status(200).json(livros);
     } catch (error: any) {
-      return res
-        .status(500)
-        .json({
-          erro: 'Erro ao listar todos os Livros!',
-          detalhe: error.message,
-        });
+      return res.status(500).json({
+        erro: 'Erro ao listar todos os Livros!',
+        detalhe: error.message,
+      });
     }
   }
 
@@ -77,11 +75,9 @@ export class LivroController {
       }
 
       if (preco === undefined || typeof preco !== 'number' || preco < 0) {
-        return res
-          .status(400)
-          .json({
-            erro: 'O campo preço é obrigatório e deve ser um número positivo',
-          });
+        return res.status(400).json({
+          erro: 'O campo preço é obrigatório e deve ser um número positivo',
+        });
       }
 
       if (
@@ -90,11 +86,9 @@ export class LivroController {
         sinopse.trim() === '' ||
         sinopse.length > 200
       ) {
-        return res
-          .status(400)
-          .json({
-            erro: 'O campo sinopse é obrigatório e deve conter no máximo 200 caracteres',
-          });
+        return res.status(400).json({
+          erro: 'O campo sinopse é obrigatório e deve conter no máximo 200 caracteres',
+        });
       }
 
       const anoAtual = new Date().getFullYear();
@@ -106,11 +100,9 @@ export class LivroController {
         anoPublicacao < 0 ||
         anoPublicacao > anoAtual
       ) {
-        return res
-          .status(400)
-          .json({
-            erro: 'O campo anoPublicação é obrigatório, deve ser um ano válido e não pode ser superior a ${anoAtual}',
-          });
+        return res.status(400).json({
+          erro: 'O campo anoPublicação é obrigatório, deve ser um ano válido e não pode ser superior a ${anoAtual}',
+        });
       }
 
       const livroExistente = await Livro.findOne({
@@ -118,11 +110,9 @@ export class LivroController {
       });
 
       if (livroExistente) {
-        return res
-          .status(409)
-          .json({
-            erro: 'Ja existe um Livro cadastrado com este titulo e autor.',
-          });
+        return res.status(409).json({
+          erro: 'Ja existe um Livro cadastrado com este titulo e autor.',
+        });
       }
 
       const novoLivro = await Livro.create({
@@ -219,11 +209,9 @@ export class LivroController {
           anoPublicacao < 0 ||
           anoPublicacao > anoAtual
         ) {
-          return res
-            .status(400)
-            .json({
-              erro: `O campo anoPublicação deve ser um ano válido e não pode ser superior a ${anoAtual}`,
-            });
+          return res.status(400).json({
+            erro: `O campo anoPublicação deve ser um ano válido e não pode ser superior a ${anoAtual}`,
+          });
         }
 
         livro.anoPublicacao = anoPublicacao;
@@ -234,11 +222,9 @@ export class LivroController {
       });
 
       if (livroExistente && livroExistente.id !== id) {
-        return res
-          .status(409)
-          .json({
-            erro: 'Ja existe um Livro cadastrado com este titulo e autor.',
-          });
+        return res.status(409).json({
+          erro: 'Ja existe um Livro cadastrado com este titulo e autor.',
+        });
       }
 
       await livro.save();
