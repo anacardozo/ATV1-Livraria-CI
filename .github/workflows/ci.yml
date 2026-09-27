@@ -13,8 +13,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  validar-livraria:
-    name: Validar Backend e Docker
+  qualidade-e-build-livraria:
+    name: Validar Backend, Padronização, Tipos, Compilação e Docker
     runs-on: ubuntu-latest
 
     steps:
@@ -47,7 +47,17 @@ jobs:
         run: |
           docker build -t api-service:test ./backend
 
-      - name: 7. Resumo da Execucao
+      - name: 7. Validar Padronizacao de Codigo (ESLint)
+        run: |
+          cd backend
+          pnpm run lint
+
+      - name: 8. Validar Formatacao de Arquivos (Prettier)
+        run: |
+          cd backend
+          pnpm run format:check
+
+      - name: 9. Resumo da Execucao
         run: |
           echo "Integracao Continua concluida com sucesso!"
           echo "Autor da alteracao: ${{ github.actor }}"
