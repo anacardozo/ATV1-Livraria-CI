@@ -1,2 +1,2 @@
-# ATV1-Livraria
-Repositório voltado para uma API de Livraria. Essa atividade é voltada para a matéria de LDW
+# ATV1-Livraria-CI
+Reutilizando o repositório da API de Livraria para realizar a atividade de CI/CD. Essa atividade é voltada para a matéria de IEC
