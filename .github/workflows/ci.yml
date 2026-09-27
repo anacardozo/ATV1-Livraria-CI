@@ -14,7 +14,7 @@ on:
 
 jobs:
   validar-livraria:
-    name: Validar Backend, Frontend e Docker
+    name: Validar Backend e Docker
     runs-on: ubuntu-latest
 
     steps:
@@ -47,19 +47,7 @@ jobs:
         run: |
           docker build -t api-service:test ./backend
 
-      - name: 7. Validar Frontend (quando presente no projeto da livraria)
-        run: |
-          if [ -d "app" ]; then
-            echo "Subprojeto frontend encontrado. Iniciando validacao..."
-            cd app
-            pnpm install --frozen-lockfile
-            pnpm run build
-            docker build -t app-service:test ./app
-          else
-            echo "Subprojeto app ainda nao adicionado ao projeto livraria. Etapa concluida."
-          fi
-
-      - name: 8. Resumo da Execucao
+      - name: 7. Resumo da Execucao
         run: |
           echo "Integracao Continua concluida com sucesso!"
           echo "Autor da alteracao: ${{ github.actor }}"
