@@ -5,11 +5,11 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
-    "db:migrate": "sequelize-cli db:migrate",
-    "db:migrate:undo": "sequelize-cli db:migrate:undo",
-    "lint": "eslint src --ext .ts",
-    "format": "prettier --write \"src/**/*.ts\""
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,json,md}\"",
+    "format:fix": "prettier --write \"src/**/*.{ts,tsx,js,json,md}\"",
+    "check-all": "pnpm run lint && pnpm run format:check"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -32,7 +32,8 @@
     "prettier": "^3.9.6",
     "sequelize-cli": "^6.6.2",
     "tsx": "^4.7.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.70.1"
   },
   "pnpm": {
     "ignoredBuiltDependencies": [

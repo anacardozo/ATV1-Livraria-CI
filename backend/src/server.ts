@@ -19,42 +19,39 @@ app.use(express.json());
 
 // Rota de Health Check
 app.get('/api/health', (req: Request, res: Response) => {
-    res.status(200).json({
-        status: 'OK',
-        mensagem: 'Backend rodando com sucesso.',
-        timestamp: new Date().toISOString()
-    });
+  res.status(200).json({
+    status: 'OK',
+    mensagem: 'Backend rodando com sucesso.',
+    timestamp: new Date().toISOString(),
+  });
 });
 
 // Rota da documentação interativa
+
 app.use(
-    '/api/docs',
-    swaggerUi.serve,
-    swaggerUi.setup(swaggerDocument as any)
+  '/api/docs',
+  swaggerUi.serve as any,
+  swaggerUi.setup(swaggerDocument) as any,
 );
 
 // Registra todas as rotas da aplicação sob o prefixo /api
 app.use('/api', appRoutes);
 
 async function main() {
-    try {
-        await sequelize.authenticate();
+  try {
+    await sequelize.authenticate();
 
-        console.log(
-            'Conexão com o banco de dados PostgreSQL estabelecida com sucesso!'
-        );
+    console.log(
+      'Conexão com o banco de dados PostgreSQL estabelecida com sucesso!',
+    );
 
-        app.listen(PORT, () => {
-            console.log(`Servidor rodando em: http://localhost:${PORT}`);
-            console.log(`Swagger: http://localhost:${PORT}/api/docs`);
-        });
-
-    } catch (error) {
-        console.error(
-            'Erro ao conectar com o banco de dados:',
-            error
-        );
-    }
+    app.listen(PORT, () => {
+      console.log(`Servidor rodando em: http://localhost:${PORT}`);
+      console.log(`Swagger: http://localhost:${PORT}/api/docs`);
+    });
+  } catch (error) {
+    console.error('Erro ao conectar com o banco de dados:', error);
+  }
 }
 
 main();
