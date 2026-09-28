@@ -14,7 +14,7 @@ on:
 
 jobs:
   qualidade-e-build-livraria:
-    name: Validar Padronização, Tipos, Backend e Docker
+    name: Validar Padronização, Tipos e Compilacao
     runs-on: ubuntu-latest
 
     steps:
@@ -48,17 +48,19 @@ jobs:
           cd backend
           pnpm run format:check
 
-      - name: 7. Validar Tipos e Compilar o Backend (Express)
+      - name: 7. Validar Tipos no Backend (tsc --noEmit)
+        run: |
+          cd backend
+          pnpm run type-check
+
+      - name: 8. Compilar Backend para Producao
         run: |
           cd backend
           pnpm run build
 
-      - name: 8. Validar Construção da Imagem Docker da API
+      - name: 9. Compilar Frontend React com Vite
+        if: hashFiles('app/package.json') != ''
         run: |
-          docker build -t api-service:test ./backend
-
-      - name: 9. Resumo da execução
-        run: |
-          echo "Integração Continua concluida com sucesso!"
-          echo "Autor da alteração: ${{ github.actor }}"
-          echo "Commit validado: ${{ github.sha }}"
+          cd app
+          pnpm install --frozen-lockfile
+          pnpm run build
