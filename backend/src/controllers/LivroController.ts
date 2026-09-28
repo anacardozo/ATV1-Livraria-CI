@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { Livro } from '../models/Livros';
 
 export class LivroController {
-
   // GET /api/livros - Listar todos os Livros
   public static async index(req: Request, res: Response): Promise<Response> {
     try {
