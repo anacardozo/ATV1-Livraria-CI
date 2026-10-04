@@ -26,14 +26,10 @@ export class LivroController {
     }
   }
 
-
-
   // GET /api/livros/:id - Listar um Livro por ID
   public static async show(req: Request, res: Response): Promise<Response> {
     try {
       const id = parseInt(req.params.id as string, 10);
-
-      const valorIncorreto: number = "texto incompativel";
 
       if (isNaN(id) || id <= 0) {
         return res.status(400).json({
