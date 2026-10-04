@@ -30,8 +30,8 @@ app.get('/api/health', (req: Request, res: Response) => {
 
 app.use(
   '/api/docs',
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerDocument),
+  swaggerUi.serve as any,
+  swaggerUi.setup(swaggerDocument) as any,
 );
 
 // Registra todas as rotas da aplicação sob o prefixo /api
