@@ -33,6 +33,7 @@ export class LivroController {
     try {
       const id = parseInt(req.params.id as string, 10);
 
+      const valorIncorreto: number = "texto incompativel";
 
       if (isNaN(id) || id <= 0) {
         return res.status(400).json({
