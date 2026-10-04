@@ -35,8 +35,8 @@ Para trabalhar neste projeto (tanto para rodar a infraestrutura quanto para form
 ### 1. Clone o repositório
 
 ```
-git clone <url-do-seu-repositorio>
-cd <nome-da-pasta-do-repositorio>
+git clone https://github.com/anacardozo/ATV1-Livraria-CI.git
+cd https://github.com/anacardozo/ATV1-Livraria-CI.git
 
 ```
 
