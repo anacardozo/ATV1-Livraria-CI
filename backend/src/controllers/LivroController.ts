@@ -26,6 +26,8 @@ export class LivroController {
     }
   }
 
+  const testeErro = 'isso vai falhar';
+
   // GET /api/livros/:id - Listar um Livro por ID
   public static async show(req: Request, res: Response): Promise<Response> {
     try {
