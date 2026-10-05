@@ -123,25 +123,23 @@ Ele impede que pastas pesadas e arquivos locais (como `node_modules`, `.env`, e 
 Para subir toda a infraestrutura (banco de dados e a aplicação) localmente, execute na raiz do projeto:
 
 ```
-docker-compose up -d
+docker compose up -d
 
 ```
-
-* `--build`: Garante que o Docker recrie a imagem lendo as últimas alterações do seu código e instalando as dependências limpas lá dentro.
 
 * `-d`: Roda em segundo plano (detached mode).
 
 Para acompanhar os logs da aplicação rodando no Docker:
 
 ```
-docker-compose logs -f
+docker compose logs -f
 
 ```
 
 Para derrubar os containers:
 
 ```
-docker-compose down
+docker compose down
 
 ```
 
