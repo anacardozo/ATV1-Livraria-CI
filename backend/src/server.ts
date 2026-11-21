@@ -41,6 +41,7 @@ app.use('/api', appRoutes);
 async function main() {
   try {
     await sequelize.authenticate();
+    await sequelize.sync();
 
     console.log(
       'Conexão com o banco de dados PostgreSQL estabelecida com sucesso!',
