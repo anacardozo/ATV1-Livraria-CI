@@ -21,6 +21,7 @@ app.use(express.json());
 app.get('/api/health', (req: Request, res: Response) => {
   res.status(200).json({
     status: 'OK',
+    uptime: Math.floor(process.uptime()),
     mensagem: 'Backend rodando com sucesso.',
     timestamp: new Date().toISOString(),
   });
@@ -29,7 +30,7 @@ app.get('/api/health', (req: Request, res: Response) => {
 // Rota da documentação interativa
 
 app.use(
-  '/api/docs',
+  '/api/docs',  
   swaggerUi.serve as any,
   swaggerUi.setup(swaggerDocument) as any,
 );
@@ -48,6 +49,7 @@ async function main() {
     app.listen(PORT, () => {
       console.log(`Servidor rodando em: http://localhost:${PORT}`);
       console.log(`Swagger: http://localhost:${PORT}/api/docs`);
+      console.log(`Healt Check disponivel em: http://localhost:${PORT}/api/health`)
     });
   } catch (error) {
     console.error('Erro ao conectar com o banco de dados:', error);
