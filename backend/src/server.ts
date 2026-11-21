@@ -30,7 +30,7 @@ app.get('/api/health', (req: Request, res: Response) => {
 // Rota da documentação interativa
 
 app.use(
-  '/api/docs',  
+  '/api/docs',
   swaggerUi.serve as any,
   swaggerUi.setup(swaggerDocument) as any,
 );
@@ -49,7 +49,9 @@ async function main() {
     app.listen(PORT, () => {
       console.log(`Servidor rodando em: http://localhost:${PORT}`);
       console.log(`Swagger: http://localhost:${PORT}/api/docs`);
-      console.log(`Healt Check disponivel em: http://localhost:${PORT}/api/health`)
+      console.log(
+        `Healt Check disponivel em: http://localhost:${PORT}/api/health`,
+      );
     });
   } catch (error) {
     console.error('Erro ao conectar com o banco de dados:', error);
