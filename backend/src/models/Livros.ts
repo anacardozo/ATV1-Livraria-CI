@@ -36,7 +36,7 @@ Livro.init(
       allowNull: false,
     },
     anoPublicacao: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
