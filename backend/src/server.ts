@@ -22,7 +22,7 @@ app.get('/api/health', (req: Request, res: Response) => {
   res.status(200).json({
     status: 'OK',
     uptime: Math.floor(process.uptime()),
-    mensagem: 'Backend da API de Livraria rodando com sucesso.',
+    mensagem: 'Backend da API rodando com sucesso.',
     timestamp: new Date().toISOString(),
   });
 });
